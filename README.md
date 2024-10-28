@@ -33,11 +33,96 @@ In JavaScript, variables can be declared using `var`, `let`, or `const`. Each ha
 - **Hoisting**: Variables are hoisted, but initialized with `undefined`.
 
 ```javascript
-console.log(x); // undefined (hoisted but not initialized)
-var x = 5;
-console.log(x); // 5
+var a = 100; //global
 
-// Redeclaration
-var x = 10;
-console.log(x); // 10
+function exampleVar() {
+  // console.log(x); // undefined (because of hoisting) (re-declared)
+  var x = 10;
+  console.log(x); // 10
+  if (true) {
+    var x = 20; // Same variable, since var is not block-scoped
+    console.log(x); // 20
+  }
+  function sampleVarFn() {
+    var x = 30;
+    console.log(x); 
+    // Inside the sampleVarFn function, a new local variable x is declared with var x = 30; 
+    // This variable x is different from the x in the outer exampleVar function because it is in a different scope (the scope of sampleVarFn). 
+    // So, inside sampleVarFn, console.log(x) prints 30 and not modified x varibale outside sampleVarFn Function scope.
+    console.log(a); //100
+  }
+  sampleVarFn();
+  console.log(a); //100
+  console.log(x); // 20 (var is not block-scoped)
+}
+exampleVar();
+```
+
+### ii. let
+
+- **Scope**: Block-scoped.
+- **Re-declaration**: Variables declared with `let` can be re-declared but in same scope is not possiable.
+- **Hoisting**: Variables are hoisted, but not initialized.
+```javascript
+function examplelet() {
+  // console.log(z); // ReferenceError: z is not defined
+  let z = 10;
+  console.log(z); //10
+
+  let obj = { name: "John" };
+  console.log(obj.name); // john
+
+  if (true) {
+    let z = 20; // variable z is declared with the value 20
+    console.log(z); // 20
+    obj.name = "Jane"; 
+    console.log(obj.name); // jane
+  }
+  console.log(obj.name); //jane
+  //obj is still referencing the same object, and since you modified the name property inside the if block, this change persists.
+  console.log(z); //10
+}
+
+examplelet();
+
+//inside an if block, the object obj is not re-declared. You are only modifying 
+//the properties of the same object that exists in memory.
+
+//In short, the object itself is not re-declared, and its properties are mutable, so changes 
+//to its properties persist across the whole function scope.
+
+```
+
+### iii. const
+
+- **Scope**: Block-scoped.
+- **Re-declaration**: Variables declared with `const` cannot be re-declared.
+- **Hoisting**: Variables are hoisted, but not initialized.
+- **Mutable reference**: For object and Array, the refrence is constant ,but the value can be still changed.
+```javascript
+function exampleConst(){
+    const z = 10;
+    const obj = {
+    name:"abhi",
+    age:23
+}
+const arr = [1,2,3,4];
+
+    console.log(z); // 10
+    if(true){
+        const z = 20;
+        console.log(z); // 20
+        obj.name = "abhijith";
+        console.log(obj); // { name: 'abhijith', age: 23 }
+        arr.push(5)
+        console.log(arr); // [ 1, 2, 3, 4, 5 ]
+    }
+    console.log(z); // 10
+    console.log(obj);  // { name: 'abhijith', age: 23 }
+    console.log(arr); // [ 1, 2, 3, 4, 5 ]
+}
+
+exampleConst()
+```
+
 
