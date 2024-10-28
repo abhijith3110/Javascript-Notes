@@ -125,4 +125,42 @@ const arr = [1,2,3,4];
 exampleConst()
 ```
 
+## 2. Hoisting
+- Hoisting is the Js mechanisms where `variables`, `function` declarations and `classes` are Moved to the top of their scope before code execution.
+- only Declaration
+- Functions are fully Hoisted
+- variable declared with `var` are hoisted but initialized with `undefined`
+- `let` and `const` are hoisted but not initialized (reference Error)
+- Not work in `Arrow Function`(type error)
+```javascript
+console.log(a); //undefined
+var a = 10;
+console.log(a); //10
+
+let b;
+console.log(b); //undefined
+b=10;
+console.log(b); //10
+
+//console.log(c); // ReferenceError: Cannot access 'c' before initialization
+const c = 10;
+console.log(c); // 10
+
+
+hoistedFn()
+function hoistedFn(){
+    console.log("hello");
+}
+
+
+// arrowFn() // TypeError
+
+var arrowFn = ()=>{
+    console.log("hello arrow function");
+}
+
+arrowFn()
+```
+
+
 
