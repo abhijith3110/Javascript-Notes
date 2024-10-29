@@ -162,5 +162,14 @@ var arrowFn = ()=>{
 arrowFn()
 ```
 
+## 3. Data Types
+- Data Types are the kind of Values can be stored and Manipulate within a program.
+- There are two types of data types : Primitive Datatype and Non-primitive Datatypes
+  ### i. Primitive Datatypes (Immutable and Not an Object)
+  - example: `Number`,`String`,`Boolean`,`Undefined`,`Null`,`BigInt`,`Symbol`
+  - NB:`Null` - Assigned value that represent nothing or empty.
+  - NB:`Undefined` - A variable is Declared but has no Value Assigned Yet.
 
-
+  ### ii. Non-Primitive DataTypes (Mutable and Its a Object)
+  - example: `Object`,` Array`, `Regex` , `Functions`
+  - NB: `Function` are the first class object in javascript, They can Assigned to variables , passed as Arguments and Return it.
